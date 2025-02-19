@@ -1,0 +1,9 @@
+# Ignora tu archivo de entorno
+.env
+
+# Puede que quieras ignorar también la carpeta de logs
+logs/
+
+# Si usas un entorno virtual local
+venv/
+    
