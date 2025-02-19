@@ -10,7 +10,7 @@ def get_embedding_new(text: str, model="text-embedding-3-small"):
     Genera embedding con openai>=1.0.0
     """
     try:
-        client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
         response = client.embeddings.create(
             input=text,
             model=model,
@@ -32,7 +32,7 @@ def generate_chat_response(contexts, user_query, model="gpt-3.5-turbo"):
     """
 
     try:
-        client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
         response = client.chat.completions.create(
             model=model,
             messages=[

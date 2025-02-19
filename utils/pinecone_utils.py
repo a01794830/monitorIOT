@@ -12,10 +12,10 @@ from utils.embedding_utils import get_embedding_new
 load_dotenv()
 logger = logging.getLogger(__name__)
 
-PINECONE_API_KEY = st.secrets["OPENAI_API_KEY"]
-PINECONE_REGION = st.secrets["PINECONE_API_KEY"]
-PINECONE_CLOUD = st.secrets["PINECONE_CLOUD"]
-INDEX_NAME = st.secrets["PINECONE_INDEX_NAME"]
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY","")
+PINECONE_REGION = os.getenv("PINECONE_REGION","us-east-1")
+PINECONE_CLOUD = os.getenv("PINECONE_CLOUD","aws")
+INDEX_NAME = os.getenv("PINECONE_INDEX_NAME","tracking1-rag")
 VECTOR_DIM = 1536
 
 pc = Pinecone(api_key=PINECONE_API_KEY)
@@ -88,7 +88,7 @@ Ejemplo de JSON:
 Si no se detecta nada, responde "{}".
 No agregues texto extra, solo el JSON.
     """
-    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+    client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
     try:
         completion = client.chat.completions.create(
